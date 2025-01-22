@@ -358,6 +358,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1322429707422603497, guid: 9bd7055d3a3bdf0459651ae197565d15,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2425557379001138265, guid: 9bd7055d3a3bdf0459651ae197565d15,
         type: 3}
       propertyPath: m_Name
@@ -377,6 +382,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayerID
       value: 836068581
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406415618548396111, guid: 9bd7055d3a3bdf0459651ae197565d15,
+        type: 3}
+      propertyPath: speed
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3406415618548396111, guid: 9bd7055d3a3bdf0459651ae197565d15,
         type: 3}

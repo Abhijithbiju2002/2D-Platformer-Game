@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 boxColliderSize;
     private Vector2 boxColliderOffset;
 
+    public float speed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +20,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+
+        float horizontal = Input.GetAxisRaw("Horizontal");
         float VerticalInput = Input.GetAxis("Vertical");
 
-        HandleMovement();
+        MoveCharacter(horizontal);
+        HandleMovementAnimation();
         HandleJump(VerticalInput);
 
+        //crouch button
         if (Input.GetKey(KeyCode.LeftControl))
         {
             HandleCrouch(true);
@@ -33,8 +39,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    void MoveCharacter(float horizontal)
+    {
+        Vector3 position = transform.position;
+        position.x += horizontal * speed * Time.deltaTime;
+        transform.position = position;
 
-    void HandleMovement()
+    }
+
+    void HandleMovementAnimation()
     {
         float speed = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(speed));
@@ -78,12 +91,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (vertical > 0)
         {
-            animator.SetBool("bJump", true);
+            animator.SetBool("Jump", true);
 
         }
         else
         {
-            animator.SetBool("bJump", false);
+            animator.SetBool("Jump", false);
         }
     }
 
