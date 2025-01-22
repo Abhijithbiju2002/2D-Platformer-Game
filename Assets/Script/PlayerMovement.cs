@@ -78,10 +78,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (vertical > 0)
         {
-            animator.SetTrigger("Jump");
+            animator.SetBool("bJump", true);
 
         }
-
+        else
+        {
+            animator.SetBool("bJump", false);
+        }
     }
 
 }

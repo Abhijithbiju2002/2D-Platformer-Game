@@ -214,6 +214,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1426056304 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4754800518410039480, guid: 9bd7055d3a3bdf0459651ae197565d15,
+    type: 3}
+  m_PrefabInstance: {fileID: 7631740995707848704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1543877981
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +378,11 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 836068581
       objectReference: {fileID: 0}
+    - target: {fileID: 3406415618548396111, guid: 9bd7055d3a3bdf0459651ae197565d15,
+        type: 3}
+      propertyPath: playerCollider
+      value: 
+      objectReference: {fileID: 1426056304}
     - target: {fileID: 7447556902521433768, guid: 9bd7055d3a3bdf0459651ae197565d15,
         type: 3}
       propertyPath: m_LocalPosition.x
