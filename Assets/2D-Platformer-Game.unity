@@ -220,6 +220,12 @@ BoxCollider2D:
     type: 3}
   m_PrefabInstance: {fileID: 7631740995707848704}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &1426056306 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1322429707422603497, guid: 9bd7055d3a3bdf0459651ae197565d15,
+    type: 3}
+  m_PrefabInstance: {fileID: 7631740995707848704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1543877981
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +239,7 @@ GameObject:
   - component: {fileID: 1543877982}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -270,18 +276,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.015212059, y: -0.12929833}
+  m_Offset: {x: 0.10385609, y: -0.12929833}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 7.43, y: 1}
+    newSize: {x: 18.13, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.449709, y: 0.74140334}
+  m_Size: {x: 18.08692, y: 0.74140334}
   m_EdgeRadius: 0
 --- !u!212 &1543877983
 SpriteRenderer:
@@ -329,7 +335,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 7.43, y: 1}
+  m_Size: {x: 18.13, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -360,12 +366,22 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1322429707422603497, guid: 9bd7055d3a3bdf0459651ae197565d15,
         type: 3}
+      propertyPath: m_Mass
+      value: 2.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322429707422603497, guid: 9bd7055d3a3bdf0459651ae197565d15,
+        type: 3}
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2425557379001138265, guid: 9bd7055d3a3bdf0459651ae197565d15,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2425557379001138265, guid: 9bd7055d3a3bdf0459651ae197565d15,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2950513835416516480, guid: 9bd7055d3a3bdf0459651ae197565d15,
@@ -382,6 +398,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayerID
       value: 836068581
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406415618548396111, guid: 9bd7055d3a3bdf0459651ae197565d15,
+        type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1426056306}
+    - target: {fileID: 3406415618548396111, guid: 9bd7055d3a3bdf0459651ae197565d15,
+        type: 3}
+      propertyPath: jump
+      value: 6.85
       objectReference: {fileID: 0}
     - target: {fileID: 3406415618548396111, guid: 9bd7055d3a3bdf0459651ae197565d15,
         type: 3}

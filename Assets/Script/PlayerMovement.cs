@@ -2,21 +2,24 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Animator animator;
-    public BoxCollider2D playerCollider;
+    [SerializeField] private Animator animator;
+    [SerializeField] private BoxCollider2D playerCollider;
 
     private Vector2 boxColliderSize;
     private Vector2 boxColliderOffset;
 
-    public float speed;
-    public float jump;
+    [SerializeField] private float speed;
+    [SerializeField] private float jump;
 
-    private Rigidbody2D rb;
+    private bool isGrounded = false;
+
+    [SerializeField] private Rigidbody2D rb;
 
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
+
     }
 
     void Start()
@@ -30,11 +33,11 @@ public class PlayerMovement : MonoBehaviour
     {
 
         float horizontal = Input.GetAxisRaw("Horizontal");
-        float Vertical = Input.GetAxisRaw("Vertical");
+        float vertical = Input.GetAxisRaw("Vertical");
 
         MoveCharacter(horizontal);
         HandleMovementAnimation();
-        HandleJump(Vertical);
+        HandleJump(vertical);
 
         //crouch button
         if (Input.GetKey(KeyCode.LeftControl))
@@ -97,16 +100,29 @@ public class PlayerMovement : MonoBehaviour
     }
     public void HandleJump(float vertical)
     {
-        if (vertical > 0)
+        if (vertical > 0 && isGrounded)
         {
+            animator.SetTrigger("juump");
             rb.AddForce(new Vector2(0f, jump), ForceMode2D.Impulse);
 
-            animator.SetBool("Jump", true);
+
 
         }
-        else
+
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Platform")
         {
-            animator.SetBool("Jump", false);
+            isGrounded = true;
+        }
+
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Platform")
+        {
+            isGrounded = false;
         }
     }
 
