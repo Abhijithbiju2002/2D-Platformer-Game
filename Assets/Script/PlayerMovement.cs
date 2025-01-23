@@ -9,8 +9,16 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 boxColliderOffset;
 
     public float speed;
+    public float jump;
 
-    // Start is called before the first frame update
+    private Rigidbody2D rb;
+
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     void Start()
     {
         boxColliderSize = playerCollider.size;
@@ -22,11 +30,11 @@ public class PlayerMovement : MonoBehaviour
     {
 
         float horizontal = Input.GetAxisRaw("Horizontal");
-        float VerticalInput = Input.GetAxis("Vertical");
+        float Vertical = Input.GetAxisRaw("Vertical");
 
         MoveCharacter(horizontal);
         HandleMovementAnimation();
-        HandleJump(VerticalInput);
+        HandleJump(Vertical);
 
         //crouch button
         if (Input.GetKey(KeyCode.LeftControl))
@@ -91,6 +99,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (vertical > 0)
         {
+            rb.AddForce(new Vector2(0f, jump), ForceMode2D.Impulse);
+
             animator.SetBool("Jump", true);
 
         }
