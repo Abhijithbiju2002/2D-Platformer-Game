@@ -125,12 +125,6 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform.tag == "GameOver")
-        {
-            Destroy(gameObject);
-        }
-    }
+
 
 }
