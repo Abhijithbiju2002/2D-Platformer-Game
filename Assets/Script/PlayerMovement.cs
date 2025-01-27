@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -120,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
     //    }
 
     //}
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Platform")
@@ -129,10 +131,22 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    public void KillPlayer()
+    {
+        Destroy(gameObject);
+
+        ReloadLevel();
+    }
     public void PickKey()
     {
         ScoreCo.IncreaseScore(10);
         Debug.Log("Gotkey");
+    }
+
+    void ReloadLevel()
+    {
+        SceneManager.LoadScene(0);
+
     }
 
 
