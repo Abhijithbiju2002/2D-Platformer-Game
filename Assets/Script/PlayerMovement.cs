@@ -15,10 +15,13 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb;
 
+    public ScoreCo ScoreCo;
+
 
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
     }
 
@@ -33,11 +36,11 @@ public class PlayerMovement : MonoBehaviour
     {
 
         float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        //float vertical = Input.GetAxisRaw("Vertical");
 
         MoveCharacter(horizontal);
         HandleMovementAnimation();
-        HandleJump(vertical);
+        //HandleJump(vertical);
 
         //crouch button
         if (Input.GetKey(KeyCode.LeftControl))
@@ -48,6 +51,13 @@ public class PlayerMovement : MonoBehaviour
         {
             HandleCrouch(false);
         }
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jump);
+            isGrounded = false;
+            animator.SetBool("Jumping", !isGrounded);
+        }
+
 
     }
     void MoveCharacter(float horizontal)
@@ -98,33 +108,33 @@ public class PlayerMovement : MonoBehaviour
         }
         animator.SetBool("Crouch", crouch);
     }
-    public void HandleJump(float vertical)
-    {
-        if (vertical > 0 && isGrounded)
-        {
-            animator.SetTrigger("juump");
-            rb.AddForce(new Vector2(0f, jump), ForceMode2D.Impulse);
+    //public void HandleJump(float vertical)
+    //{
+    //    if (vertical > 0 && isGrounded)
+    //    {
+    //        animator.SetBool("Jumping", true);
+    //        rb.AddForce(new Vector2(0f, jump), ForceMode2D.Impulse);
 
 
 
-        }
+    //    }
 
-    }
+    //}
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Platform")
         {
             isGrounded = true;
+            animator.SetBool("Jumping", !isGrounded);
         }
 
     }
-    private void OnCollisionExit2D(Collision2D collision)
+    public void PickKey()
     {
-        if (collision.transform.tag == "Platform")
-        {
-            isGrounded = false;
-        }
+        ScoreCo.IncreaseScore(10);
+        Debug.Log("Gotkey");
     }
+
 
 
 }
