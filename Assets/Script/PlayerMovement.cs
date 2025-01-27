@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     public ScoreCo ScoreCo;
+    public int health = 90;
 
 
     private void Awake()
@@ -148,6 +149,7 @@ public class PlayerMovement : MonoBehaviour
         SceneManager.LoadScene(0);
 
     }
+
 
 
 
