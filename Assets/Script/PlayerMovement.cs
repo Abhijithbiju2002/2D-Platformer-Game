@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,13 +18,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     public ScoreCo ScoreCo;
-    public int health = 90;
+
+    public static int health = 3;
+    public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite EmptyHeart;
+
 
 
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        health = 3;
 
     }
 
@@ -60,6 +67,14 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Jumping", !isGrounded);
         }
 
+        foreach (Image img in hearts)
+        {
+            img.sprite = EmptyHeart;
+        }
+        for (int i = 0; i < health; i++)
+        {
+            hearts[i].sprite = fullHeart;
+        }
 
     }
     void MoveCharacter(float horizontal)

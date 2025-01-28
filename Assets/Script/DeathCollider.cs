@@ -7,10 +7,16 @@ public class DeathCollider : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerMovement>() != null)
         {
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(currentSceneIndex);
+            PlayerMovement.health--;
+            int currentSceneIndex2 = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(currentSceneIndex2);
+            if (PlayerMovement.health <= 0)
+            {
+                int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+                SceneManager.LoadScene(currentSceneIndex);
+                PlayerMovement.health = 3;
+            }
         }
-
 
     }
 }
