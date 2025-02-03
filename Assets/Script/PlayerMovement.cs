@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
@@ -7,8 +6,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private BoxCollider2D playerCollider;
 
+
     private Vector2 boxColliderSize;
     private Vector2 boxColliderOffset;
+
+    public GameOverControler gameOverC;
 
     [SerializeField] private float speed;
     [SerializeField] private float jump;
@@ -151,7 +153,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Destroy(gameObject);
 
-        ReloadLevel();
+        gameOverC.PlayerDied();
+
     }
     public void PickKey()
     {
@@ -159,11 +162,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Gotkey");
     }
 
-    void ReloadLevel()
-    {
-        SceneManager.LoadScene(0);
 
-    }
 
 
 
