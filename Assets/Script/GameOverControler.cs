@@ -6,6 +6,7 @@ public class GameOverControler : MonoBehaviour
 {
     public Button buttonRestart;
 
+
     private void Awake()
     {
         buttonRestart.onClick.AddListener(ReloadLevel);
@@ -16,7 +17,9 @@ public class GameOverControler : MonoBehaviour
     }
     void ReloadLevel()
     {
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(1);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex);
 
     }
 }
