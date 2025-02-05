@@ -9,7 +9,7 @@ public class LevelComplete : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             SceneManager.LoadSceneAsync(scene);
-
+            LevelManager.Instance.MarkCurrentComplete();
         }
     }
 }

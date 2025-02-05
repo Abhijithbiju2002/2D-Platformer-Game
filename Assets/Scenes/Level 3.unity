@@ -1420,7 +1420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20953871b610bb4ba659e21df521e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Level 1
+  scene: Main Menu
 --- !u!61 &881169044
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1680,6 +1680,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1014055427}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1014055429 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3460733795649669282, guid: bc8ce936b40a00747a1c0ddcf95c19aa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1014055427}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27edbbde6069210499ab69e415a587ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1090976862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2041,7 +2053,7 @@ PrefabInstance:
         type: 3}
       propertyPath: gameOverC
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1014055429}
     - target: {fileID: 3406415618548396111, guid: 9bd7055d3a3bdf0459651ae197565d15,
         type: 3}
       propertyPath: hearts.Array.data[0]

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,6 +18,23 @@ public class LevelSelector : MonoBehaviour
 
     private void onClick()
     {
+        LevelStatus levelstatus = LevelManager.Instance.GetLevelStatus(LevelName);
+        switch (levelstatus)
+        {
+            case LevelStatus.Locked:
+                Debug.Log("no can do");
+                break;
+
+            case LevelStatus.Unlocked:
+                SceneManager.LoadScene(LevelName);
+                break;
+
+            case LevelStatus.Completed:
+                SceneManager.LoadScene(LevelName);
+                break;
+
+        }
+
         SceneManager.LoadScene(LevelName);
     }
 }
