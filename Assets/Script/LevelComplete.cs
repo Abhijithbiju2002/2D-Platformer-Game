@@ -8,8 +8,18 @@ public class LevelComplete : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            UnlockNewLevel();
             SceneManager.LoadSceneAsync(scene);
 
+        }
+    }
+    void UnlockNewLevel()
+    {
+        if (SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("ReachedIndex"))
+        {
+            PlayerPrefs.SetInt("ReachedIndex", SceneManager.GetActiveScene().buildIndex + 1);
+            PlayerPrefs.SetInt("UnlockLevel", PlayerPrefs.GetInt("UnlockedLevel", 1) + 1);
+            PlayerPrefs.Save();
         }
     }
 }
