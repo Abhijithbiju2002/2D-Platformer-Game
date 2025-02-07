@@ -8,10 +8,12 @@ public class LevelMenu : MonoBehaviour
 
     private void Awake()
     {
+
         //It Checks How Many Levels Are Unlocked
         //This gets the number of unlocked levels from saved data.
         // If there’s no saved data, it starts with 1 unlocked level.
-        int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
+        int unlockedLevel = PlayerPrefs.GetInt("ReachedIndex", 1);
+        unlockedLevel = Mathf.Clamp(unlockedLevel, 1, buttons.Length);
 
         //This makes all level buttons unclickable at first.
         for (int i = 0; i < buttons.Length; i++)
