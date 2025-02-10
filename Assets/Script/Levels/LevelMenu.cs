@@ -8,7 +8,6 @@ public class LevelMenu : MonoBehaviour
 
     private void Awake()
     {
-
         //It Checks How Many Levels Are Unlocked
         //This gets the number of unlocked levels from saved data.
         // If there’s no saved data, it starts with 1 unlocked level.
@@ -25,12 +24,14 @@ public class LevelMenu : MonoBehaviour
         {
             buttons[i].interactable = true;
         }
-
     }
+
     //When you click a level button, it loads the level with that number.
     public void OpenLevel(int levelId)
     {
         string levelName = "Level " + levelId;
+        SoundManager.Instance.Play(Sounds.ButtonClick);
         SceneManager.LoadScene(levelName);
     }
+
 }
