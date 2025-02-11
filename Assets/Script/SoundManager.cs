@@ -63,6 +63,44 @@ public class SoundManager : MonoBehaviour
             return item.soundClip;
         return null;
     }
+    public void MoveSoundPlayer(Sounds sound, bool isMoving)
+    {
+        AudioClip audioClip = getSoundClip(sound);
+        if (audioClip != null)
+        {
+            if (isMoving)
+            {
+                if (!soundEffect.isPlaying)// Only play if not already playing
+                {
+                    soundEffect.clip = audioClip;
+                    soundEffect.loop = true;// Enable looping for footsteps
+                    soundEffect.Play();
+                }
+            }
+            else
+            {
+                if (soundEffect.isPlaying) // Stop when no movement
+                {
+                    soundEffect.Stop();// Instantly stop the sound
+                    soundEffect.loop = false;
+                    soundEffect.clip = null;
+                }
+
+                // Play a short sound when the player quickly taps movement keys
+
+
+            }
+
+
+        }
+        else
+        {
+            Debug.LogError("Clip not found for sound type: " + sound);
+
+        }
+    }
+
+
 
 }
 [Serializable]

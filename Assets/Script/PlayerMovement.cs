@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite EmptyHeart;
+    private bool wasMoving = false; // Track movement state
+
 
 
 
@@ -92,15 +94,29 @@ public class PlayerMovement : MonoBehaviour
         float speed = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(speed));
 
+        bool isMoving = Mathf.Abs(speed) > 0.1f;
+
+        if (isMoving && !wasMoving)
+        {
+            SoundManager.Instance.MoveSoundPlayer(Sounds.PlayerMove, true);
+        }
+        else if (!isMoving && wasMoving)
+        {
+            SoundManager.Instance.MoveSoundPlayer(Sounds.PlayerMove, false);
+        }
+
+        wasMoving = isMoving; // Update movement state
 
         Vector3 scale = transform.localScale;
 
         if (speed < 0)
         {
+
             scale.x = -1f * Mathf.Abs(scale.x);
         }
         else if (speed > 0)
         {
+
             scale.x = Mathf.Abs(scale.x);
         }
         transform.localScale = scale;
