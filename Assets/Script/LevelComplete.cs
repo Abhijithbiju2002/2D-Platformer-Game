@@ -10,6 +10,8 @@ public class LevelComplete : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             UnlockNewLevel();
+
+            SoundManager.Instance.PlayLevelMusic(scene);
             SceneManager.LoadSceneAsync(scene);
         }
     }

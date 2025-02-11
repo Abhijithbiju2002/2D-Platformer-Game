@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource soundMusic;
 
     public SoundType[] Sounds;
+    private Dictionary<string, AudioClip> levelMusicMap;
 
     private void Awake()
     {
@@ -17,6 +19,7 @@ public class SoundManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            InitializeLevelMusic();
         }
         else
         {
@@ -26,6 +29,17 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         PlayMusic(global::Sounds.Music);
+    }
+    private void InitializeLevelMusic()
+    {
+        levelMusicMap = new Dictionary<string, AudioClip>
+        {
+            { "Main Menu", getSoundClip(global::Sounds.Music) },
+            { "Level 1", getSoundClip(global::Sounds.Level1Music) },
+            { "Level 2", getSoundClip(global::Sounds.Level2Music) },
+            { "Level 3", getSoundClip(global::Sounds.Level3Music) },
+            // Add more levels as needed
+        };
     }
     public void PlayMusic(Sounds sound)
     {
@@ -38,6 +52,23 @@ public class SoundManager : MonoBehaviour
         else
         {
             Debug.LogError("Clip not found for sound type: " + sound);
+        }
+    }
+
+    public void PlayLevelMusic(string levelName)
+    {
+        if (levelMusicMap.TryGetValue(levelName, out AudioClip clip))
+        {
+            if (soundMusic.clip != clip)
+            {
+                soundMusic.Stop();
+                soundMusic.clip = clip;
+                soundMusic.Play();
+            }
+        }
+        else
+        {
+            Debug.LogError("No music found for level: " + levelName);
         }
     }
 
@@ -114,6 +145,9 @@ public enum Sounds
 {
     ButtonClick,
     Music,
+    Level1Music,
+    Level2Music,
+    Level3Music,
     PlayerMove,
     PlayerDeath,
     EnemyDeath,

@@ -31,6 +31,8 @@ public class LevelMenu : MonoBehaviour
     {
         string levelName = "Level " + levelId;
         SoundManager.Instance.Play(Sounds.ButtonClick);
+        // Play level-specific music before loading the scene
+        SoundManager.Instance.PlayLevelMusic(levelName);
         SceneManager.LoadScene(levelName);
     }
 
