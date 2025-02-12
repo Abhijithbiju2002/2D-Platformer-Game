@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SoundManager : MonoBehaviour
 {
     private static SoundManager instance;
@@ -28,6 +29,7 @@ public class SoundManager : MonoBehaviour
     }
     private void Start()
     {
+
         PlayMusic(global::Sounds.Music);
     }
     private void InitializeLevelMusic()
@@ -130,6 +132,31 @@ public class SoundManager : MonoBehaviour
 
         }
     }
+    public void PlayerLoss(Sounds sound, bool playerDead)
+    {
+        AudioClip soundClip = getSoundClip(sound);
+        if (playerDead)
+        {
+            soundEffect.PlayOneShot(soundClip);
+        }
+
+    }
+    public void FinishLine(Sounds sound, bool reachedFinishLine)
+    {
+        AudioClip soundClipp = getSoundClip(sound);
+        if (reachedFinishLine)
+        {
+            soundEffect.PlayOneShot(soundClipp);
+        }
+    }
+    public void PlayerHurt(Sounds sound, bool isHurt)
+    {
+        AudioClip hurtClip = getSoundClip(sound);
+        if (isHurt)
+        {
+            soundEffect.PlayOneShot(hurtClip);
+        }
+    }
 
 
 
@@ -150,5 +177,7 @@ public enum Sounds
     Level3Music,
     PlayerMove,
     PlayerDeath,
+    Finish,
     EnemyDeath,
+    Hurt,
 }

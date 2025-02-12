@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     public Sprite EmptyHeart;
     private bool wasMoving = false; // Track movement state
 
+    [SerializeField] ParticleSystem fallEffects;
+
 
 
 
@@ -163,6 +165,11 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             animator.SetBool("Jumping", !isGrounded);
         }
+        if (collision.transform.tag == "Collider")
+        {
+            fallEffects.Play();
+            KillPlayer();
+        }
 
     }
     public void KillPlayer()
@@ -177,6 +184,9 @@ public class PlayerMovement : MonoBehaviour
         ScoreCo.IncreaseScore(10);
         Debug.Log("Gotkey");
     }
+
+
+
 
 
 

@@ -2191,8 +2191,20 @@ MonoBehaviour:
     soundClip: {fileID: 8300000, guid: df6d1af64fdebb04d80a54b27b720509, type: 3}
   - soundType: 1
     soundClip: {fileID: 8300000, guid: 0651b56880a11ef45909b779443691aa, type: 3}
-  - soundType: 2
+  - soundType: 5
     soundClip: {fileID: 8300000, guid: 286cc1f0951952c47bcf3cc3b5c599d6, type: 3}
+  - soundType: 2
+    soundClip: {fileID: 8300000, guid: 3b2844ebd2c174c43aa75b20d78f2f3f, type: 3}
+  - soundType: 3
+    soundClip: {fileID: 8300000, guid: 37fe1f3a9030c4d44a11ae5d4e5dffbb, type: 3}
+  - soundType: 4
+    soundClip: {fileID: 8300000, guid: 2233d009d0f311540becbf528798f4c6, type: 3}
+  - soundType: 6
+    soundClip: {fileID: 8300000, guid: dd161d383090286498f77ee60f84e5ee, type: 3}
+  - soundType: 7
+    soundClip: {fileID: 8300000, guid: 5dd61d95f175f7c45a5a02ee7d5ec07e, type: 3}
+  - soundType: 9
+    soundClip: {fileID: 8300000, guid: b1adad69cbfc57b48823dc593a2e3006, type: 3}
 --- !u!4 &2105447475
 Transform:
   m_ObjectHideFlags: 0
