@@ -199,7 +199,7 @@ MonoBehaviour:
   playerCollider: {fileID: 8920699754768424484}
   gameOverC: {fileID: 0}
   speed: 6
-  jump: 8
+  jump: 10
   rb: {fileID: 7878026837734069837}
   ScoreCo: {fileID: 0}
   hearts:

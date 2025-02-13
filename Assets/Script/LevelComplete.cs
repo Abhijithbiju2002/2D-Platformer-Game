@@ -5,15 +5,26 @@ public class LevelComplete : MonoBehaviour
 {
     public string scene;
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            SoundManager.Instance.FinishLine(Sounds.Finish, true);
-            UnlockNewLevel();
+            PlayerMovement playerMovement = collision.GetComponent<PlayerMovement>();
 
-            SoundManager.Instance.PlayLevelMusic(scene);
-            SceneManager.LoadSceneAsync(scene);
+            if (playerMovement != null && playerMovement.HasKey())
+            {
+                SoundManager.Instance.FinishLine(Sounds.Finish, true);
+                UnlockNewLevel();
+
+                SoundManager.Instance.PlayLevelMusic(scene);
+                SceneManager.LoadSceneAsync(scene);
+            }
+            else
+            {
+                Debug.Log("You need a key to finish the level!");
+            }
+
         }
     }
 
