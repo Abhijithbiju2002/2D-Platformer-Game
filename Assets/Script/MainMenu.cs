@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     void PlayGame()
     {
         //SceneManager.LoadScene(1);
+        SoundManager.Instance.Play(Sounds.ButtonClick);
         levelSelection.SetActive(true);
     }
 }
