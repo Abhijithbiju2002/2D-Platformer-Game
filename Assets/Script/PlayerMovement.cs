@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] ParticleSystem fallEffects;
 
+    private bool hasKey = false;
+
 
 
 
@@ -170,24 +172,33 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-        if (collision.transform.tag == "Collider")
-        {
-            fallEffects.Play();
-            KillPlayer();
-        }
+
 
     }
     public void KillPlayer()
     {
-        Destroy(gameObject);
+        fallEffects.Play();// Play the particle system
 
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;// Hide the player sprite
+        gameObject.GetComponent<Collider2D>().enabled = false;// Disable collider to prevent interactions
+        gameObject.GetComponent<Rigidbody2D>().simulated = false; // Disable physics
+        Invoke("DestroyPlayer", 0.3f);// Wait 1 second before destroying
         gameOverC.PlayerDied();
 
     }
+    private void DestroyPlayer()
+    {
+        Destroy(gameObject);
+    }
     public void PickKey()
     {
+        hasKey = true;
         ScoreCo.IncreaseScore(10);
         Debug.Log("Gotkey");
+    }
+    public bool HasKey()// Function to check if the player has the key
+    {
+        return hasKey;
     }
 
 
