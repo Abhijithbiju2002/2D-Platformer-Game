@@ -2164,7 +2164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20953871b610bb4ba659e21df521e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Level 3
+  scene: Level 2
 --- !u!61 &881169044
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2903,6 +2903,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179776434682627927, guid: ef41b1c98edc4044caf59d92c5f099b8,
+        type: 3}
+      propertyPath: jump
+      value: 6.34
       objectReference: {fileID: 0}
     - target: {fileID: 8179776434682627927, guid: ef41b1c98edc4044caf59d92c5f099b8,
         type: 3}
