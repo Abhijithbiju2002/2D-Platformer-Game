@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Platform
+  - GameOver
+  - Collider
   layers:
   - Default
   - TransparentFX
@@ -40,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2695354483
+    locked: 0
+  - name: Player
+    uniqueID: 836068581
     locked: 0
