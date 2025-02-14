@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
     public Button buttonPlay;
+    public GameObject levelSelection;
 
     private void Awake()
     {
@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     }
     void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
+        SoundManager.Instance.Play(Sounds.ButtonClick);
+        levelSelection.SetActive(true);
     }
 }
