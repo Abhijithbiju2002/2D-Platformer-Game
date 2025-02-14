@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -6,7 +7,6 @@ using UnityEngine.UI;
 public class LevelSelector : MonoBehaviour
 {
     private Button button;
-
     public string LevelName;
 
     private void Awake()
@@ -17,6 +17,8 @@ public class LevelSelector : MonoBehaviour
 
     private void onClick()
     {
+        SoundManager.Instance.Play(Sounds.ButtonClick);
+        SoundManager.Instance.PlayLevelMusic(LevelName);
         SceneManager.LoadScene(LevelName);
     }
 }

@@ -25,6 +25,12 @@ public class PlayerMovement : MonoBehaviour
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite EmptyHeart;
+    private bool wasMoving = false; // Track movement state
+
+    [SerializeField] ParticleSystem fallEffects;
+
+    private bool hasKey = false;
+
 
 
 
@@ -47,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         float horizontal = Input.GetAxisRaw("Horizontal");
+        animator.SetBool("Jumping", rb.velocity.y > 0.1f);
         //float vertical = Input.GetAxisRaw("Vertical");
 
         MoveCharacter(horizontal);
@@ -66,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jump);
             isGrounded = false;
-            animator.SetBool("Jumping", !isGrounded);
+            animator.SetBool("Jumping", true);
         }
 
         foreach (Image img in hearts)
@@ -92,15 +99,29 @@ public class PlayerMovement : MonoBehaviour
         float speed = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(speed));
 
+        bool isMoving = Mathf.Abs(speed) > 0.1f;
+
+        if (isMoving && !wasMoving)
+        {
+            SoundManager.Instance.MoveSoundPlayer(Sounds.PlayerMove, true);
+        }
+        else if (!isMoving && wasMoving)
+        {
+            SoundManager.Instance.MoveSoundPlayer(Sounds.PlayerMove, false);
+        }
+
+        wasMoving = isMoving; // Update movement state
 
         Vector3 scale = transform.localScale;
 
         if (speed < 0)
         {
+
             scale.x = -1f * Mathf.Abs(scale.x);
         }
         else if (speed > 0)
         {
+
             scale.x = Mathf.Abs(scale.x);
         }
         transform.localScale = scale;
@@ -142,25 +163,46 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "Platform")
+        if (collision.gameObject.CompareTag("Platform"))
         {
-            isGrounded = true;
-            animator.SetBool("Jumping", !isGrounded);
+            if (!isGrounded)// Only update if we were previously in the air
+            {
+                isGrounded = true;
+                animator.SetBool("Jumping", false);// Reset jump animation
+            }
+
         }
+
 
     }
     public void KillPlayer()
     {
-        Destroy(gameObject);
+        fallEffects.Play();// Play the particle system
 
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;// Hide the player sprite
+        gameObject.GetComponent<Collider2D>().enabled = false;// Disable collider to prevent interactions
+        gameObject.GetComponent<Rigidbody2D>().simulated = false; // Disable physics
+        Invoke("DestroyPlayer", 0.3f);// Wait 1 second before destroying
         gameOverC.PlayerDied();
 
     }
+    private void DestroyPlayer()
+    {
+        Destroy(gameObject);
+    }
     public void PickKey()
     {
+        hasKey = true;
         ScoreCo.IncreaseScore(10);
         Debug.Log("Gotkey");
     }
+    public bool HasKey()// Function to check if the player has the key
+    {
+        return hasKey;
+    }
+
+
+
 
 
 
