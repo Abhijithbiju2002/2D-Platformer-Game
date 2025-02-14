@@ -60,7 +60,9 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerMovement>() != null)
         {
+            SoundManager.Instance.PlayerHurt(Sounds.Hurt, true);
             PlayerMovement.health--;
+
             if (PlayerMovement.health <= 0)
             {
                 PlayerMovement playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
